@@ -21,16 +21,19 @@ const fetchGreatLakesId = async () => {
       },
       body: JSON.stringify({
         userId: USERNAME,
-        password,
+        password: PASSWORD,
         pin: '',
         deviceId: '86FB6D13-5788-42BC-B360-DA168130757E|IPHONE',
       }),
     }
   );
 
-  const parsedResponse = await loginResponse.json();
-  
-  return parsedResponse.greatLakesId;
+  if (loginResponse.status === 200) {
+    const parsedResponse = await loginResponse.json();
+    return parsedResponse.greatLakesId;
+  } else {
+    return await fetchGreatLakesId();
+  }
 }
 
 const updateGreatLakesRegistration = (greatLakesId) => {

@@ -1509,6 +1509,7 @@
 				44E05BDE1F391B23002709A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "StudentLoans" */ = {
 			isa = XCConfigurationList;
