@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   ActivityIndicator,
-  Button,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,6 +11,40 @@ import {
   getGreatLakesBalance,
   getMohelaBalance,
 } from './Api';
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  refreshButton: {
+    alignItems: 'center',
+    backgroundColor: '#c4c7c8',
+    borderRadius: 35,
+    flex: 0,
+    height: 70,
+    justifyContent: 'center',
+    opacity: 0.8,
+    width: 70,
+  },
+  refreshText: {
+    color: 'black',
+  },
+  totalAmount: {
+    fontSize: 28,
+    marginTop: 5,
+  },
+  totalTitle: {
+    fontSize: 20,
+  },
+  totalContainer: {
+    flex: 0,
+  },
+});
 
 class TodayWidget extends React.Component {
   constructor(args) {
@@ -75,7 +108,7 @@ class TodayWidget extends React.Component {
             {'Total balance:'}
           </Text>
           <Text style={styles.totalAmount}>
-            {isLoading ? '' : ('$' + (mohelaBalance + greatLakesBalance).toFixed(2))} 
+            {isLoading ? '' : `$${(mohelaBalance + greatLakesBalance).toFixed(2)}`}
           </Text>
           {isLoading &&
             <ActivityIndicator animating />
@@ -91,39 +124,5 @@ class TodayWidget extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  refreshButton: {
-    alignItems: 'center',
-    backgroundColor: '#c4c7c8',
-    borderRadius: 35,
-    flex: 0,
-    height: 70,
-    justifyContent: 'center',
-    opacity: 0.8,
-    width: 70,
-  },
-  refreshText: {
-    color: 'black',
-  },
-  totalAmount: {
-    fontSize: 28,
-    marginTop: 5,
-  },
-  totalTitle: {
-    fontSize: 20,
-  },
-  totalContainer: {
-    flex: 0,
-  },
-});
 
 export default TodayWidget;

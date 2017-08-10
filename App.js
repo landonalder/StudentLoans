@@ -4,13 +4,46 @@ import {
   Button,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 
 import {
   getGreatLakesBalance,
   getMohelaBalance,
 } from './Api';
+
+const styles = StyleSheet.create({
+  balances: {
+    fontSize: 20,
+    textAlign: 'center',
+    padding: 10,
+  },
+  balancesContainer: {
+    alignItems: 'center',
+    flex: 0,
+    flexDirection: 'row',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  refreshButton: {
+    bottom: 20,
+    position: 'absolute',
+  },
+  total: {
+    fontSize: 30,
+    textAlign: 'center',
+  },
+  totalContainer: {
+    alignItems: 'center',
+    flex: 0,
+    flexDirection: 'row',
+    paddingTop: 20,
+  },
+});
 
 export default class App extends Component {
   constructor(args) {
@@ -67,7 +100,7 @@ export default class App extends Component {
       <View style={styles.container}>
         <View style={styles.balancesContainer}>
           <Text style={styles.balances}>
-            {`Mohela balance: ${mohelaLoading ? '' : ('$' + mohelaBalance.toFixed(2))}`}
+            {`Mohela balance: ${mohelaLoading ? '' : `$${mohelaBalance.toFixed(2)}`}`}
           </Text>
           {mohelaLoading &&
             <ActivityIndicator animating />
@@ -75,7 +108,7 @@ export default class App extends Component {
         </View>
         <View style={styles.balancesContainer}>
           <Text style={styles.balances}>
-            {`Great lakes balance: ${greatLakesLoading ? '' : ('$' + greatLakesBalance.toFixed(2))}`}
+            {`Great lakes balance: ${greatLakesLoading ? '' : `$${greatLakesBalance.toFixed(2)}`}`}
           </Text>
           {greatLakesLoading &&
             <ActivityIndicator animating />
@@ -83,7 +116,7 @@ export default class App extends Component {
         </View>
         <View style={styles.totalContainer}>
           <Text style={styles.total}>
-            {`Total balance: ${mohelaLoading ? '' : ('$' + (mohelaBalance + greatLakesBalance).toFixed(2))}`}
+            {`Total balance: ${mohelaLoading ? '' : `$${(mohelaBalance + greatLakesBalance).toFixed(2)}`}`}
           </Text>
           {(mohelaLoading || greatLakesLoading) &&
             <ActivityIndicator animating />
@@ -99,36 +132,3 @@ export default class App extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  balances: {
-    fontSize: 20,
-    textAlign: 'center',
-    padding: 10,
-  },
-  balancesContainer: {
-    alignItems: 'center',
-    flex: 0,
-    flexDirection: 'row',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  refreshButton: {
-    bottom: 20,
-    position: 'absolute',
-  },
-  total: {
-    fontSize: 30,
-    textAlign: 'center',
-  },
-  totalContainer: {
-    alignItems: 'center',
-    flex: 0,
-    flexDirection: 'row',
-    paddingTop: 20,
-  }
-});
